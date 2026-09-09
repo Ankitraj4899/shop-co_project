@@ -1,0 +1,183 @@
+@use "../abstracts/functions" as *;
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.product-card {
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+
+    &__image-wrap {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        border-radius: $radius-2xl;
+        background: $color-bg-surface-warm;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+
+        @media (max-width: 768px) {
+            border-radius: $radius-lg;
+            aspect-ratio: 1 / 1;
+        }
+
+        .product-card__image {
+            width: 85%;
+            height: 85%;
+            object-fit: contain;
+        }
+    }
+
+    &__title {
+        margin: $spacing-md 0 $spacing-2xs;
+        font-size: $font-size-lg;
+        font-weight: $font-weight-bold;
+        color: $color-black;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+        line-height: $line-height-snug;
+
+        @media (max-width: 768px) {
+            font-size: $font-size-base;
+            margin: $spacing-sm 0 $spacing-3xs;
+        }
+
+        @media (max-width: 380px) {
+            font-size: $font-size-sm;
+        }
+    }
+
+    &__rating {
+        display: flex;
+        align-items: center;
+        gap: $spacing-xs;
+        font-size: $font-size-sm;
+        color: $color-text-subtle;
+        min-height: 18px;
+        white-space: nowrap;
+        overflow: hidden;
+
+        @media (max-width: 480px) {
+            font-size: $font-size-xs;
+            gap: $spacing-2xs;
+        }
+
+        .stars-rating-container {
+            display: inline-flex;
+            align-items: center;
+            flex-shrink: 0;
+
+            @media (max-width: 480px) {
+                svg {
+                    width: 12px !important;
+                    height: 12px !important;
+                }
+            }
+        }
+
+        .rating-num {
+            color: $color-black;
+            font-weight: $font-weight-medium;
+
+            @media (max-width: 480px) {
+                font-size: $font-size-xs;
+            }
+
+            .rating-max {
+                color: $color-text-muted;
+                font-size: $font-size-xs;
+
+                @media (max-width: 480px) {
+                    font-size: $font-size-2xs;
+                }
+            }
+        }
+    }
+
+    &__price-row {
+        display: flex;
+        align-items: center;
+        gap: $spacing-sm;
+        margin-top: $spacing-xs;
+        flex-wrap: wrap;
+
+        @media (max-width: 480px) {
+            gap: 5px;
+            margin-top: $spacing-2xs;
+        }
+
+        .current-price {
+            font-size: $font-size-2xl;
+            font-weight: $font-weight-bold;
+            color: $color-black;
+
+            @media (max-width: 768px) {
+                font-size: $font-size-lg;
+            }
+
+            @media (max-width: 380px) {
+                font-size: $font-size-md;
+            }
+        }
+
+        .original-price {
+            font-size: $font-size-xl;
+            color: $color-text-light;
+            text-decoration: line-through;
+            font-weight: $font-weight-medium;
+
+            @media (max-width: 768px) {
+                font-size: $font-size-base;
+            }
+
+            @media (max-width: 380px) {
+                font-size: $font-size-sm;
+            }
+        }
+
+        .discount-pill {
+            background: $color-discount-bg;
+            color: $color-discount-text;
+            font-size: $font-size-xs;
+            font-weight: $font-weight-semibold;
+            padding: 2px 7px;
+            border-radius: $radius-pill;
+
+            @media (max-width: 480px) {
+                font-size: $font-size-2xs;
+                padding: 1px 5px;
+            }
+        }
+    }
+
+    .card-badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: rgba(0, 0, 0, 0.75);
+        color: $color-white;
+        font-size: $font-size-2xs;
+        font-weight: $font-weight-semibold;
+        padding: 3px 8px;
+        border-radius: $radius-pill;
+        text-transform: uppercase;
+
+        &--out {
+            background: $color-stock-out;
+        }
+
+        &--low {
+            background: $color-stock-low;
+        }
+    }
+}
